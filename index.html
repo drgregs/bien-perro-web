@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bien Perro — Taquería · Cocina Mexicana · Madrid</title>
+<meta name="description" content="Bien Perro Taquería en Madrid. Tacos al pastor del trompo, margaritas a 4€ y cero reservas. Orden de llegada. Cocina mexicana de verdad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Mr+Dafoe&display=swap" rel="stylesheet">
+<style>
+:root{
+  --naranja:#E0500A;
+  --naranja-osc:#B93F05;
+  --negro:#171009;
+  --crema:#F6ECDC;
+  --lima:#A8C63C;
+  --lima-osc:#7D9A24;
+  --rojo:#FF3131;
+  --nopal:#223B2C;
+  --display:'Alfa Slab One', serif;
+  --body:'Archivo', system-ui, sans-serif;
+  --neon:'Mr Dafoe', cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--negro);
+  color:var(--crema);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--lima);color:var(--negro)}
+
+/* ---------- Idiomas ---------- */
+body.en .es{display:none !important}
+body.es .en{display:none !important}
+
+/* ---------- Nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;
+  background:rgba(23,16,9,0);
+  transition:background .4s ease, box-shadow .4s ease;
+}
+nav.scrolled{background:rgba(23,16,9,.95);backdrop-filter:blur(8px);box-shadow:0 2px 0 rgba(246,236,220,.08)}
+.nav-logo{
+  font-family:var(--display);font-size:1.15rem;color:var(--negro);
+  text-decoration:none;letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  transition:color .4s ease;
+}
+nav.scrolled .nav-logo{color:var(--crema)}
+.nav-logo .wedge{width:14px;height:14px;flex:none}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{
+  color:var(--negro);text-decoration:none;font-weight:700;font-size:.82rem;
+  text-transform:uppercase;letter-spacing:.12em;transition:color .4s ease, opacity .2s;
+}
+nav.scrolled .nav-links a{color:var(--crema)}
+.nav-links a:hover{opacity:.6}
+.lang-toggle{
+  font-family:var(--body);font-weight:900;font-size:.8rem;letter-spacing:.08em;
+  border:2px solid var(--negro);background:transparent;color:var(--negro);
+  padding:7px 14px;border-radius:999px;cursor:pointer;
+  transition:all .3s ease;
+}
+nav.scrolled .lang-toggle{border-color:var(--crema);color:var(--crema)}
+.lang-toggle:hover{background:var(--negro);color:var(--naranja)}
+nav.scrolled .lang-toggle:hover{background:var(--crema);color:var(--negro)}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{display:block;width:24px;height:3px;background:var(--negro);margin:5px 0;border-radius:2px;transition:all .3s}
+nav.scrolled .burger span{background:var(--crema)}
+
+@media(max-width:820px){
+  .nav-links{
+    position:fixed;inset:0;background:var(--negro);
+    flex-direction:column;justify-content:center;gap:34px;
+    transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.3,1);
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{color:var(--crema)!important;font-size:1.3rem}
+  .burger{display:block;z-index:110}
+  body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg);background:var(--crema)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg);background:var(--crema)}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:100svh;background:var(--naranja);color:var(--negro);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;position:relative;padding:110px 20px 90px;
+  background-image:radial-gradient(circle at 50% 120%, var(--naranja-osc) 0%, var(--naranja) 55%);
+}
+.hero-eyebrow{
+  font-weight:900;letter-spacing:.35em;text-transform:uppercase;font-size:.78rem;
+  display:flex;align-items:center;gap:12px;
+  opacity:0;animation:rise .8s .2s ease forwards;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'★';font-size:.7rem}
+.wordmark{
+  font-family:var(--display);
+  font-size:clamp(2.6rem, 14vw, 11rem);
+  line-height:.95;letter-spacing:.01em;
+  margin:22px 0 10px;position:relative;
+  display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;
+}
+.wordmark .word{display:inline-flex;align-items:baseline}
+.wordmark .gap{width:.35em}
+.wordmark .ch{opacity:0;transform:translateY(.4em);animation:rise .7s ease forwards}
+.wm-i{position:relative}
+.wm-i .wedge{
+  position:absolute;top:-.14em;left:50%;transform:translateX(-50%) rotate(-12deg);
+  width:.42em;height:.42em;
+}
+.wm-o{position:relative;display:inline-block}
+.wm-o svg.dog{
+  position:absolute;inset:0;margin:auto;
+  width:.52em;height:.52em;top:.30em;
+}
+.hero-sub{
+  max-width:560px;font-size:clamp(1rem,2.3vw,1.25rem);font-weight:500;line-height:1.5;
+  opacity:0;animation:rise .8s 1s ease forwards;
+}
+.hero-badges{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:30px;
+  opacity:0;animation:rise .8s 1.2s ease forwards;
+}
+.badge{
+  font-weight:900;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  border:2.5px solid var(--negro);border-radius:999px;padding:10px 20px;
+  background:transparent;transition:transform .2s ease, background .2s, color .2s;
+}
+.badge:hover{transform:translateY(-3px) rotate(-1deg)}
+.badge.solid{background:var(--negro);color:var(--naranja)}
+.badge.lima{background:var(--lima);border-color:var(--lima);color:var(--negro)}
+.hero-scroll{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  font-size:.72rem;font-weight:900;letter-spacing:.3em;text-transform:uppercase;
+  opacity:0;animation:rise .8s 1.6s ease forwards;
+}
+.hero-scroll::after{
+  content:'';display:block;width:2px;height:34px;background:var(--negro);
+  margin:8px auto 0;animation:drip 1.6s ease-in-out infinite;transform-origin:top;
+}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+@keyframes drip{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+
+/* ---------- Ticker ---------- */
+.ticker{
+  background:var(--negro);color:var(--crema);overflow:hidden;
+  border-top:3px solid var(--negro);border-bottom:3px solid var(--negro);
+  padding:14px 0;white-space:nowrap;
+}
+.ticker-track{display:inline-flex;animation:scroll 28s linear infinite}
+.ticker span{
+  font-family:var(--display);font-size:1.05rem;letter-spacing:.06em;
+  padding:0 26px;color:var(--crema);
+}
+.ticker span:nth-child(4n+2){color:var(--lima)}
+.ticker span:nth-child(4n+4){color:var(--naranja)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- Secciones base ---------- */
+section{padding:110px 24px}
+.wrap{max-width:1080px;margin:0 auto}
+.eyebrow{
+  font-weight:900;font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--naranja);margin-bottom:18px;display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:'';width:34px;height:3px;background:currentColor}
+h2{
+  font-family:var(--display);font-size:clamp(2rem,5.5vw,3.6rem);
+  line-height:1.05;margin-bottom:26px;
+}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease, transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Historia ---------- */
+.historia{background:var(--crema);color:var(--negro)}
+.historia .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+.historia p{font-size:1.05rem;line-height:1.75;margin-bottom:18px;max-width:56ch}
+.historia strong{color:var(--naranja-osc)}
+.historia .eyebrow{color:var(--nopal)}
+.stamp{
+  border:3px solid var(--negro);border-radius:18px;padding:34px 30px;
+  transform:rotate(1.5deg);background:#fff;
+  box-shadow:8px 8px 0 var(--naranja);
+  transition:transform .3s ease;
+}
+.stamp:hover{transform:rotate(0deg) translateY(-4px)}
+.stamp h3{font-family:var(--display);font-size:1.4rem;margin-bottom:14px}
+.stamp ul{list-style:none}
+.stamp li{
+  padding:11px 0;border-bottom:2px dashed rgba(23,16,9,.2);
+  font-weight:700;display:flex;gap:10px;align-items:center;font-size:.95rem;
+}
+.stamp li:last-child{border-bottom:none}
+.stamp li::before{content:'🌵';font-size:1rem}
+@media(max-width:860px){.historia .wrap{grid-template-columns:1fr}}
+
+/* ---------- Carta ---------- */
+.carta{background:var(--negro)}
+.carta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:48px}
+.plato{
+  border:2.5px solid rgba(246,236,220,.16);border-radius:20px;padding:34px 30px;
+  position:relative;overflow:hidden;
+  transition:border-color .3s ease, transform .3s ease, background .3s ease;
+}
+.plato:hover{border-color:var(--lima);transform:translateY(-6px);background:rgba(168,198,60,.05)}
+.plato .tag{
+  position:absolute;top:20px;right:20px;
+  font-size:.68rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;background:var(--naranja);color:var(--negro);
+}
+.plato .tag.lima{background:var(--lima)}
+.plato .tag.rojo{background:var(--rojo);color:#fff;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.plato h3{font-family:var(--display);font-size:1.55rem;margin-bottom:10px;padding-right:90px}
+.plato .precio{font-family:var(--display);font-size:2.2rem;color:var(--lima);margin-bottom:12px;display:block}
+.plato p{color:rgba(246,236,220,.72);line-height:1.65;font-size:.98rem}
+.plato.destacado{
+  grid-column:span 2;background:var(--naranja);border-color:var(--naranja);color:var(--negro);
+  display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+}
+.plato.destacado p{color:rgba(23,16,9,.78)}
+.plato.destacado .precio{color:var(--negro);font-size:3.4rem}
+.plato.destacado:hover{background:var(--naranja-osc);border-color:var(--naranja-osc)}
+.trompo-note{
+  margin-top:30px;display:flex;align-items:center;gap:16px;
+  font-weight:700;color:var(--lima);font-size:1rem;
+}
+.trompo-icon{width:40px;height:40px;flex:none;animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+  .carta-grid{grid-template-columns:1fr}
+  .plato.destacado{grid-column:span 1;grid-template-columns:1fr}
+}
+
+/* ---------- Neón ---------- */
+.neon-sec{
+  background:#0C0805;min-height:72vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;position:relative;
+  background-image:radial-gradient(ellipse at 50% 50%, rgba(255,49,49,.09) 0%, transparent 60%);
+}
+.neon{
+  font-family:var(--neon);
+  font-size:clamp(2.6rem, 9vw, 7rem);
+  color:#fff;line-height:1.15;transform:rotate(-3deg);
+  text-shadow:
+    0 0 6px rgba(255,255,255,.9),
+    0 0 14px var(--rojo),
+    0 0 34px var(--rojo),
+    0 0 70px var(--rojo),
+    0 0 110px rgba(255,49,49,.7);
+  animation:flicker 5s linear infinite;
+}
+@keyframes flicker{
+  0%,100%{opacity:1}
+  3%{opacity:.4}
+  4%{opacity:1}
+  38%{opacity:1}
+  39%{opacity:.55}
+  40%{opacity:1}
+  71%{opacity:1}
+  72%{opacity:.3}
+  73%{opacity:1}
+  74%{opacity:.7}
+  75%{opacity:1}
+}
+.neon-sec small{
+  margin-top:40px;font-size:.78rem;font-weight:900;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(246,236,220,.45);
+}
+
+/* ---------- Sin reservas ---------- */
+.reservas{background:var(--lima);color:var(--negro);text-align:center;overflow:hidden}
+.reservas h2{font-size:clamp(2.4rem,7vw,5rem)}
+.reservas .big-no{
+  font-family:var(--display);font-size:clamp(2.3rem,11vw,12rem);line-height:1.05;
+  color:var(--negro);-webkit-text-stroke:0;display:block;margin-bottom:6px;
+  overflow-wrap:break-word;
+}
+.reservas p{max-width:600px;margin:20px auto 0;font-size:1.12rem;font-weight:500;line-height:1.65}
+.pasos{
+  display:flex;justify-content:center;gap:0;margin-top:56px;flex-wrap:wrap;
+}
+.paso{
+  font-family:var(--display);font-size:clamp(1.1rem,3vw,1.7rem);
+  padding:16px 30px;border:3px solid var(--negro);
+  background:var(--crema);position:relative;
+  transition:transform .25s ease, background .25s ease;
+}
+.paso:not(:first-child){margin-left:-3px}
+.paso:hover{transform:translateY(-6px);background:#fff;z-index:2}
+.paso em{display:block;font-family:var(--body);font-style:normal;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px;color:var(--naranja-osc)}
+@media(max-width:640px){
+  .pasos{flex-direction:column;align-items:center}
+  .paso:not(:first-child){margin-left:0;margin-top:-3px}
+}
+
+/* ---------- Lunes a miércoles ---------- */
+.finde{background:var(--crema);color:var(--negro)}
+.finde .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.finde .eyebrow{color:var(--nopal)}
+.finde p{font-size:1.05rem;line-height:1.75;margin-bottom:16px}
+.dias{display:flex;flex-direction:column;gap:14px}
+.dia{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  border:3px solid var(--negro);border-radius:14px;padding:20px 26px;
+  font-family:var(--display);font-size:1.2rem;background:#fff;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.dia:hover{transform:translateX(8px);box-shadow:-8px 8px 0 var(--lima)}
+.dia span{font-family:var(--body);font-weight:700;font-size:.85rem;color:var(--naranja-osc);letter-spacing:.06em;text-transform:uppercase;text-align:right}
+@media(max-width:860px){.finde .wrap{grid-template-columns:1fr}}
+
+/* ---------- Catering ---------- */
+.catering{background:var(--nopal);color:var(--crema)}
+.catering .wrap{max-width:800px;text-align:center}
+.catering .eyebrow{justify-content:center;color:var(--lima)}
+.catering .eyebrow::before{background:var(--lima)}
+.catering p{font-size:1.08rem;line-height:1.75;margin-bottom:16px;color:rgba(246,236,220,.85)}
+.cta{
+  display:inline-block;margin-top:26px;
+  font-family:var(--display);font-size:1.1rem;color:var(--negro);
+  background:var(--lima);padding:18px 42px;border-radius:999px;text-decoration:none;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.cta:hover{transform:translateY(-4px) rotate(-1deg);box-shadow:0 10px 0 rgba(0,0,0,.25)}
+
+/* ---------- Footer / Visítanos ---------- */
+footer{background:var(--negro);padding:100px 24px 40px}
+.foot-grid{
+  max-width:1080px;margin:0 auto;display:grid;
+  grid-template-columns:repeat(3,1fr);gap:50px;
+}
+.foot-col h4{
+  font-family:var(--display);font-size:1.15rem;margin-bottom:18px;color:var(--naranja);
+}
+.foot-col p, .foot-col li{color:rgba(246,236,220,.72);line-height:1.8;font-size:.97rem;list-style:none}
+.foot-col strong{color:var(--crema)}
+.foot-mark{
+  max-width:1080px;margin:80px auto 0;text-align:center;
+  border-top:2px solid rgba(246,236,220,.12);padding-top:34px;
+}
+.foot-mark .wm{
+  font-family:var(--display);font-size:clamp(2.4rem,9vw,5.5rem);
+  color:rgba(246,236,220,.14);letter-spacing:.02em;line-height:1;
+  transition:color .5s ease;cursor:default;
+}
+.foot-mark .wm:hover{color:var(--naranja)}
+.foot-mark small{display:block;margin-top:18px;color:rgba(246,236,220,.4);font-size:.8rem;letter-spacing:.06em}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:36px}}
+
+/* ---------- Móvil ---------- */
+@media(max-width:640px){
+  section{padding:70px 18px}
+  .hero{padding:100px 16px 80px}
+  .hero-eyebrow{font-size:.66rem;letter-spacing:.24em}
+  .hero-sub{font-size:.98rem}
+  .badge{font-size:.72rem;padding:9px 16px}
+  .ticker span{font-size:.9rem;padding:0 18px}
+  h2{font-size:clamp(1.7rem,7.5vw,2.4rem)}
+  .plato{padding:26px 22px}
+  .plato .tag{position:static;display:inline-block;margin-bottom:14px}
+  .plato h3{padding-right:0;font-size:1.35rem}
+  .plato .precio{font-size:1.9rem}
+  .plato.destacado .precio{font-size:2.6rem}
+  .neon{font-size:clamp(2rem,10vw,3.2rem)}
+  .neon-sec{min-height:60vh}
+  .neon-sec small{padding:0 24px;letter-spacing:.2em;font-size:.68rem}
+  .reservas p{font-size:1rem}
+  .stamp{transform:none;padding:26px 22px}
+  .dia{padding:16px 18px;font-size:1.05rem}
+  .foot-mark .wm{font-size:clamp(1.9rem,10vw,3rem)}
+}
+
+/* ---------- Reduced motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  .ticker-track{animation:none}
+  .reveal{opacity:1;transform:none}
+  .hero-eyebrow,.hero-sub,.hero-badges,.hero-scroll,.wordmark .ch{opacity:1;transform:none;animation:none}
+}
+a:focus-visible,button:focus-visible{outline:3px solid var(--lima);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body class="es">
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <a class="nav-logo" href="#top">
+    <svg class="wedge" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 24 A15 15 0 0 1 30 24 Z" fill="#A8C63C" stroke="#171009" stroke-width="2"/><path d="M6 23 A11 11 0 0 1 26 23 Z" fill="#D9E8A0"/><path d="M16 12 L16 23 M9.5 15 L13 23 M22.5 15 L19 23" stroke="#A8C63C" stroke-width="1.6"/></svg>
+    BIEN PERRO
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#historia"><span class="es">Historia</span><span class="en">Story</span></a></li>
+    <li><a href="#carta"><span class="es">La Carta</span><span class="en">Menu</span></a></li>
+    <li><a href="#reservas"><span class="es">Sin Reservas</span><span class="en">No Bookings</span></a></li>
+    <li><a href="#catering">Catering</a></li>
+    <li><a href="#visita"><span class="es">Visítanos</span><span class="en">Find Us</span></a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:14px">
+    <button class="lang-toggle" id="langBtn" aria-label="Switch language">EN</button>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <p class="hero-eyebrow"><span class="es">Cocina Mexicana · Madrid</span><span class="en">Mexican Kitchen · Madrid</span></p>
+
+  <h1 class="wordmark" aria-label="Bien Perro">
+    <span class="word">
+      <span class="ch" style="animation-delay:.35s">B</span><span class="ch wm-i" style="animation-delay:.45s">I<svg class="wedge" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 24 A15 15 0 0 1 30 24 Z" fill="#A8C63C" stroke="#171009" stroke-width="2"/><path d="M6 23 A11 11 0 0 1 26 23 Z" fill="#D9E8A0"/><path d="M16 12 L16 23 M9.5 15 L13 23 M22.5 15 L19 23" stroke="#A8C63C" stroke-width="1.6"/></svg></span><span class="ch" style="animation-delay:.55s">E</span><span class="ch" style="animation-delay:.65s">N</span>
+    </span>
+    <span class="gap"></span>
+    <span class="word">
+      <span class="ch" style="animation-delay:.75s">P</span><span class="ch" style="animation-delay:.85s">E</span><span class="ch" style="animation-delay:.95s">R</span><span class="ch" style="animation-delay:1.05s">R</span><span class="ch wm-o" style="animation-delay:1.15s">O<svg class="dog" viewBox="0 0 64 64" aria-hidden="true"><path fill="#171009" d="M20 6 L28 20 L36 18 L44 4 L46 22 C52 26 56 33 56 41 C56 46 54 50 50 53 L46 58 L40 54 C37 55 34 56 31 56 C28 56 25 55 22 54 L16 58 L12 52 C9 49 8 45 8 41 C8 33 12 26 18 22 Z"/><circle cx="26" cy="36" r="2.6" fill="#E0500A"/><circle cx="40" cy="36" r="2.6" fill="#E0500A"/><path fill="#E0500A" d="M30 45 L34 45 L32 48 Z"/></svg></span>
+    </span>
+  </h1>
+
+  <p class="hero-sub">
+    <span class="es">Tacos al pastor recién bajados del trompo, margaritas a 4€ y cero reservas. Llega, come, bebe, repite.</span>
+    <span class="en">Tacos al pastor straight off the trompo, €4 margaritas and zero reservations. Show up, eat, drink, repeat.</span>
+  </p>
+
+  <div class="hero-badges">
+    <span class="badge solid"><span class="es">Sin reservas</span><span class="en">No bookings</span></span>
+    <span class="badge lima"><span class="es">Margaritas 4€</span><span class="en">€4 Margaritas</span></span>
+    <span class="badge"><span class="es">Trompo a la vista</span><span class="en">Trompo on display</span></span>
+  </div>
+
+  <span class="hero-scroll"><span class="es">Baja</span><span class="en">Scroll</span></span>
+</header>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span>TACOS AL PASTOR</span><span>★</span><span>MARGARITAS 4€</span><span>★</span>
+    <span>SIN RESERVAS</span><span>★</span><span>ORDEN DE LLEGADA</span><span>★</span>
+    <span>WAGYU EN CAMINO</span><span>★</span><span>SOTOL · TEQUILA · MEZCAL</span><span>★</span>
+  </div>
+</div>
+
+<!-- ================= HISTORIA ================= -->
+<section class="historia" id="historia">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><span class="es">Nuestra historia</span><span class="en">Our story</span></p>
+      <h2><span class="es">Sabores que dejan huella</span><span class="en">Flavours that leave a mark</span></h2>
+      <div class="es">
+        <p>Durante siglos, la cocina mexicana ha sido un faro de la tradición culinaria en el mundo. En <strong>Bien Perro</strong> honramos ese arte con cada taco, preparado con el mismo esmero que un guiso de casa.</p>
+        <p>Pero somos más que una taquería: queremos ser un <strong>punto de encuentro</strong>, como las cantinas emblemáticas de antaño. Símbolo de unidad, sociedad y cultura. Y cuando se piensa en México líquido, aquí no solo hablamos de tequila o mezcal — tampoco nos olvidamos del <strong>sotol</strong>.</p>
+        <p>Porque México nos conquista por el paladar desde hace más de 500 años. Nosotros solo seguimos la tradición. A nuestra manera. Bien perro.</p>
+      </div>
+      <div class="en">
+        <p>For centuries, Mexican cuisine has been a beacon of culinary tradition around the world. At <strong>Bien Perro</strong> we honour that craft with every taco, made with the same care as a home-cooked stew.</p>
+        <p>But we're more than a taquería: we want to be a <strong>meeting point</strong>, like the legendary cantinas of old — a symbol of community and culture. And when it comes to liquid Mexico, we don't stop at tequila and mezcal: we haven't forgotten <strong>sotol</strong>.</p>
+        <p>Mexico has been winning hearts through the palate for over 500 years. We're just carrying on the tradition. Our way. Bien perro.</p>
+      </div>
+    </div>
+    <aside class="stamp reveal">
+      <h3><span class="es">Lo esencial</span><span class="en">The essentials</span></h3>
+      <ul>
+        <li><span class="es">Calidad top, precio de barrio</span><span class="en">Top quality, street prices</span></li>
+        <li><span class="es">Trompo de pastor a la vista</span><span class="en">Pastor trompo on display</span></li>
+        <li><span class="es">La margarita más canalla de Madrid: 4€</span><span class="en">Madrid's boldest margarita: €4</span></li>
+        <li><span class="es">Rápido: entras, comes, brindas</span><span class="en">Fast: walk in, eat, cheers</span></li>
+        <li><span class="es">Español, inglés y el idioma del taco</span><span class="en">Spanish, English & the language of tacos</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= CARTA ================= -->
+<section class="carta" id="carta">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><span class="es">La carta</span><span class="en">The menu</span></p>
+      <h2><span class="es">Del trompo a tu mesa</span><span class="en">From the trompo to your table</span></h2>
+    </div>
+    <div class="carta-grid">
+      <article class="plato destacado reveal">
+        <div>
+          <span class="tag"><span class="es">La estrella</span><span class="en">The star</span></span>
+          <h3>Margarita</h3>
+          <p><span class="es">Clásica, con escarcha de sal y hecha como debe ser. El precio más bajo del mercado mexicano en Madrid. Sí, en serio.</span><span class="en">Classic, salt-rimmed and made properly. The lowest price on Madrid's Mexican scene. Yes, really.</span></p>
+        </div>
+        <span class="precio">4€</span>
+      </article>
+
+      <article class="plato reveal">
+        <span class="tag lima"><span class="es">Del trompo</span><span class="en">Off the trompo</span></span>
+        <h3>Taco al Pastor</h3>
+        <p><span class="es">Marinado, dorado en el trompo y coronado con piña. El taco más pedido de La Latina, ahora en su punto exacto.</span><span class="en">Marinated, seared on the trompo and crowned with pineapple. La Latina's most-ordered taco, done right.</span></p>
+      </article>
+
+      <article class="plato reveal">
+        <span class="tag lima"><span class="es">Clásico</span><span class="en">Classic</span></span>
+        <h3>Cochinita Pibil</h3>
+        <p><span class="es">Cerdo deshebrado cocinado lento, con cebolla morada encurtida. Yucatán en tortilla de maíz.</span><span class="en">Slow-cooked shredded pork with pickled red onion. Yucatán on a corn tortilla.</span></p>
+      </article>
+
+      <article class="plato reveal">
+        <span class="tag rojo"><span class="es">Próximamente</span><span class="en">Coming soon</span></span>
+        <h3>Taco de Wagyu</h3>
+        <p><span class="es">Lo estamos preparando. La carne más top del planeta, en el formato más honesto del planeta.</span><span class="en">It's in the works. The world's finest beef in the world's most honest format.</span></p>
+      </article>
+
+      <article class="plato reveal">
+        <span class="tag"><span class="es">Para brindar</span><span class="en">To toast</span></span>
+        <h3>Sotol · Tequila · Mezcal</h3>
+        <p><span class="es">El México líquido completo. Del agave y del desierto, directo al vaso.</span><span class="en">Liquid Mexico, the full picture. From agave and desert, straight to your glass.</span></p>
+      </article>
+    </div>
+    <p class="trompo-note reveal">
+      <svg class="trompo-icon" viewBox="0 0 48 48" aria-hidden="true"><path fill="#A8C63C" d="M14 8 H34 L32 14 H16 Z M15 16 H33 L31 24 H17 Z M17 26 H31 L28 34 H20 Z M21 36 H27 L24 44 Z"/><rect x="22.6" y="2" width="2.8" height="6" fill="#A8C63C"/></svg>
+      <span><span class="es">El trompo gira a la vista. Ver girar la cena forma parte del menú.</span><span class="en">The trompo spins in full view. Watching dinner rotate is part of the menu.</span></span>
+    </p>
+  </div>
+</section>
+
+<!-- ================= NEÓN ================= -->
+<section class="neon-sec" aria-label="Más perros que tu ex">
+  <p class="neon reveal">Más perros<br>que tu ex</p>
+  <small class="reveal"><span class="es">— La leyenda de la pared. En rojo, como debe ser.</span><span class="en">— The wall legend. In red, as it should be.</span></small>
+</section>
+
+<!-- ================= SIN RESERVAS ================= -->
+<section class="reservas" id="reservas">
+  <div class="wrap reveal">
+    <span class="big-no"><span class="es">SIN RESERVAS</span><span class="en">NO BOOKINGS</span></span>
+    <p>
+      <span class="es">Aquí no hay lista, no hay teléfono que suene, no hay mesa "reservada para las nueve". Es por orden de llegada. La fila se mueve rápido — como el trompo.</span>
+      <span class="en">No waitlist, no phone ringing, no table "reserved for nine o'clock". It's first come, first served. The line moves fast — just like the trompo.</span>
+    </p>
+    <div class="pasos">
+      <div class="paso"><em><span class="es">Paso 1</span><span class="en">Step 1</span></em><span class="es">Llegas</span><span class="en">Show up</span></div>
+      <div class="paso"><em><span class="es">Paso 2</span><span class="en">Step 2</span></em><span class="es">Pides</span><span class="en">Order</span></div>
+      <div class="paso"><em><span class="es">Paso 3</span><span class="en">Step 3</span></em><span class="es">Comes</span><span class="en">Eat</span></div>
+      <div class="paso"><em><span class="es">Paso 4</span><span class="en">Step 4</span></em><span class="es">Brindas</span><span class="en">Cheers</span></div>
+      <div class="paso"><em><span class="es">Paso 5</span><span class="en">Step 5</span></em><span class="es">Repites</span><span class="en">Repeat</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LUNES A MIÉRCOLES ================= -->
+<section class="finde">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><span class="es">Lunes a miércoles</span><span class="en">Monday to Wednesday</span></p>
+      <h2><span class="es">Los mejores días son los que nadie espera</span><span class="en">The best days are the ones nobody expects</span></h2>
+      <p><span class="es">Mientras el resto de Madrid espera al viernes, nosotros encendemos la semana desde el lunes. De lunes a miércoles tendremos propuestas especiales para que empezar la semana sepa mejor que acabarla.</span><span class="en">While the rest of Madrid waits for Friday, we fire up the week from Monday. From Monday to Wednesday we'll run special offers so starting the week tastes better than ending it.</span></p>
+      <p><span class="es">Y si sales de clase de inglés ahí enfrente: aquí también se practica. Pidiendo tacos.</span><span class="en">And if you're coming out of English class across the street: you can practise here too. By ordering tacos.</span></p>
+    </div>
+    <div class="dias reveal">
+      <div class="dia"><span class="es" style="font-family:var(--display)">Lunes</span><span class="en" style="font-family:var(--display)">Monday</span><span><span class="es">Propuesta especial</span><span class="en">Special offer</span></span></div>
+      <div class="dia"><span class="es" style="font-family:var(--display)">Martes</span><span class="en" style="font-family:var(--display)">Tuesday</span><span><span class="es">Propuesta especial</span><span class="en">Special offer</span></span></div>
+      <div class="dia"><span class="es" style="font-family:var(--display)">Miércoles</span><span class="en" style="font-family:var(--display)">Wednesday</span><span><span class="es">Propuesta especial</span><span class="en">Special offer</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATERING ================= -->
+<section class="catering" id="catering">
+  <div class="wrap reveal">
+    <p class="eyebrow" style="justify-content:center">Catering</p>
+    <h2><span class="es">Bien Perro va donde tú digas</span><span class="en">Bien Perro goes wherever you say</span></h2>
+    <p>
+      <span class="es">Los mismos sabores que dejan huella, fuera del local. Cajas de almuerzo para grupos grandes, cumpleaños, eventos de fin de año, conferencias y comidas de empresa. Nos convertimos en tus cómplices para brindar experiencias únicas, con calidad y satisfacción garantizadas.</span>
+      <span class="en">The same flavours that leave a mark, beyond our walls. Lunch boxes for large groups, birthdays, end-of-year parties, conferences and corporate events. We become your accomplices in creating one-of-a-kind experiences, with quality and satisfaction guaranteed.</span>
+    </p>
+    <a class="cta" href="#visita"><span class="es">Pide tu presupuesto</span><span class="en">Get a quote</span></a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="visita">
+  <div class="foot-grid">
+    <div class="foot-col reveal">
+      <h4><span class="es">Visítanos</span><span class="en">Find us</span></h4>
+      <p><strong>Bien Perro — Taquería</strong><br>
+      <span class="es">Centro de Madrid<br>(dirección exacta muy pronto)</span>
+      <span class="en">Central Madrid<br>(exact address coming very soon)</span></p>
+    </div>
+    <div class="foot-col reveal">
+      <h4><span class="es">Cómo funciona</span><span class="en">How it works</span></h4>
+      <ul>
+        <li><span class="es"><strong>Sin reservas.</strong> Orden de llegada.</span><span class="en"><strong>No bookings.</strong> First come, first served.</span></li>
+        <li><span class="es">Servicio ágil: entra, come, brinda.</span><span class="en">Fast service: walk in, eat, cheers.</span></li>
+        <li><span class="es">Grupos grandes → catering.</span><span class="en">Big groups → catering.</span></li>
+      </ul>
+    </div>
+    <div class="foot-col reveal">
+      <h4><span class="es">Contacto</span><span class="en">Contact</span></h4>
+      <p>hola@bienperro.es<br>@bienperro.taqueria<br><span class="es">Español · English</span><span class="en">English · Español</span></p>
+    </div>
+  </div>
+  <div class="foot-mark">
+    <span class="wm">BIEN PERRO</span>
+    <small>© 2026 Bien Perro — Taquería · Cocina Mexicana ★ Madrid</small>
+  </div>
+</footer>
+
+<script>
+// ---------- Language toggle ----------
+const langBtn = document.getElementById('langBtn');
+langBtn.addEventListener('click', () => {
+  const toEN = document.body.classList.contains('es');
+  document.body.classList.toggle('es', !toEN);
+  document.body.classList.toggle('en', toEN);
+  langBtn.textContent = toEN ? 'ES' : 'EN';
+  document.documentElement.lang = toEN ? 'en' : 'es';
+  // ticker text
+  const es = ['TACOS AL PASTOR','MARGARITAS 4€','SIN RESERVAS','ORDEN DE LLEGADA','WAGYU EN CAMINO','SOTOL · TEQUILA · MEZCAL'];
+  const en = ['TACOS AL PASTOR','€4 MARGARITAS','NO BOOKINGS','FIRST COME FIRST SERVED','WAGYU COMING SOON','SOTOL · TEQUILA · MEZCAL'];
+  buildTicker(toEN ? en : es);
+});
+
+// ---------- Ticker (duplicated for seamless loop) ----------
+const track = document.getElementById('tickerTrack');
+function buildTicker(items){
+  const seq = items.flatMap(t => [t,'★']);
+  const half = seq.map(t => `<span>${t}</span>`).join('');
+  track.innerHTML = half + half; // two copies -> translateX(-50%) loops perfectly
+}
+buildTicker(['TACOS AL PASTOR','MARGARITAS 4€','SIN RESERVAS','ORDEN DE LLEGADA','WAGYU EN CAMINO','SOTOL · TEQUILA · MEZCAL']);
+
+// ---------- Nav scroll state ----------
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+// ---------- Mobile menu ----------
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  document.body.classList.remove('menu-open');
+}));
+
+// ---------- Scroll reveals ----------
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
