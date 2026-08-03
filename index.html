@@ -181,6 +181,9 @@ nav.scrolled .burger span{background:var(--crema)}
   content:'';display:block;width:2px;height:34px;background:var(--negro);
   margin-top:8px;animation:drip 1.6s ease-in-out infinite;transform-origin:top;
 }
+/* con el anuncio en flujo (≤1200px) el hero crece más que el viewport y la
+   flecha absoluta de scroll se montaría encima → fuera */
+@media(max-width:1200px){.hero-scroll{display:none}}
 @keyframes rise{to{opacity:1;transform:translateY(0)}}
 @keyframes drip{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
 
@@ -201,6 +204,8 @@ nav.scrolled .burger span{background:var(--crema)}
 
 /* ---------- Secciones base ---------- */
 section{padding:110px 24px}
+/* que los anclajes no queden escondidos bajo el nav fijo */
+section[id],footer[id]{scroll-margin-top:64px}
 .wrap{max-width:1080px;margin:0 auto}
 .eyebrow{
   font-weight:900;font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;
@@ -209,7 +214,7 @@ section{padding:110px 24px}
 .eyebrow::before{content:'';width:34px;height:3px;background:currentColor}
 h2{
   font-family:var(--display);font-size:clamp(2rem,5.5vw,3.6rem);
-  line-height:1.05;margin-bottom:26px;
+  line-height:1.05;margin-bottom:26px;text-wrap:balance;
 }
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease, transform .8s ease}
 .reveal.in{opacity:1;transform:none}
@@ -251,6 +256,8 @@ h2{
   padding:6px 12px;border-radius:999px;background:var(--naranja);color:var(--negro);
 }
 .plato .tag.lima{background:var(--lima)}
+/* sobre la tarjeta naranja la píldora naranja desaparecía */
+.plato.destacado .tag{background:var(--negro);color:var(--naranja)}
 .plato .tag.rojo{background:var(--rojo);color:#fff;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
 .plato h3{font-family:var(--display);font-size:1.55rem;margin-bottom:10px;padding-right:90px}
@@ -357,6 +364,8 @@ h2{
 @media(max-width:760px){
   .paloma-head{grid-template-columns:1fr;justify-items:center;text-align:center;gap:26px}
   .paloma-head .eyebrow{justify-content:center}
+  /* centrado y a dos líneas, la rayita quedaba colgando a la izquierda */
+  .paloma-head .eyebrow::before{display:none}
 }
 
 /* ---------- Neón ---------- */
@@ -502,10 +511,23 @@ footer{background:var(--negro);padding:100px 24px 40px}
 /* ---------- Móvil ---------- */
 @media(max-width:640px){
   section{padding:70px 18px}
-  .hero{padding:100px 16px 80px}
+  .hero{padding:92px 16px 48px}
   .hero-eyebrow{font-size:.66rem;letter-spacing:.24em}
-  .hero-sub{font-size:.98rem}
+  /* logo más contenido: en 375px el rótulo a 88vw devoraba media pantalla */
+  .hero-logo{
+    width:min(330px,80vw);margin:20px 0 14px;
+    border-radius:18px;border-width:2.5px;
+    box-shadow:7px 7px 0 rgba(23,16,9,.32);
+  }
+  .hero-sub{font-size:.98rem;max-width:32ch}
+  .hero-badges{gap:8px;margin-top:22px}
   .badge{font-size:.72rem;padding:9px 16px}
+  /* tarjeta de apertura: entera, centrada y sin cortes */
+  .hero-promo{margin-top:24px;width:min(330px,92vw)}
+  .hp-inner{padding:16px 22px;border-radius:16px}
+  .hp-date{font-size:1.55rem}
+  .hp-top{font-size:.6rem;letter-spacing:.22em}
+  .hp-sub{font-size:.66rem}
   .ticker span{font-size:.9rem;padding:0 18px}
   h2{font-size:clamp(1.7rem,7.5vw,2.4rem)}
   .plato{padding:26px 22px}
@@ -566,7 +588,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <p class="hero-eyebrow"><span class="es">Cocina Mexicana · Madrid</span><span class="en">Mexican Kitchen · Madrid</span><span class="fr">Cuisine Mexicaine · Madrid</span><span class="de">Mexikanische Küche · Madrid</span></p>
 
   <h1 class="hero-logo">
-    <img src="assets/logo-marca.png" alt="Bien Perro — Taquería">
+    <img src="assets/logo-marca.png" alt="Bien Perro — Taquería" fetchpriority="high">
   </h1>
 
   <p class="hero-sub">
@@ -615,7 +637,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
         </p>
       </div>
       <div class="paloma-sticker">
-        <img src="assets/pegatina.png" alt="Pegatina Bien Perro Taquería — Calle Toledo 70, Madrid">
+        <img src="assets/pegatina.png" alt="Pegatina Bien Perro Taquería — Calle Toledo 70, Madrid" loading="lazy" decoding="async">
       </div>
     </div>
 
@@ -860,7 +882,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <div class="wrap">
     <div class="cam-grid">
       <div class="cam-visual reveal">
-        <img src="assets/camiseta-trasera.png" alt="Camiseta Bien Perro — diseño trasero con el xolo">
+        <img src="assets/camiseta-trasera.png" alt="Camiseta Bien Perro — diseño trasero con el xolo" loading="lazy" decoding="async">
       </div>
       <div class="reveal">
         <p class="eyebrow"><span class="es">Merch oficial</span><span class="en">Official merch</span><span class="fr">Merch officiel</span><span class="de">Offizieller Merch</span></p>
@@ -930,7 +952,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </div>
   </div>
   <div class="foot-mark">
-    <img class="foot-logo" src="assets/logo-negro.png" alt="Bien Perro Taquería">
+    <img class="foot-logo" src="assets/logo-negro.png" alt="Bien Perro Taquería" loading="lazy" decoding="async">
     <a class="foot-insta" href="https://instagram.com/bienperro.taqueria" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
       @bienperro.taqueria
@@ -1014,16 +1036,45 @@ function setMenu(open){
   burger.setAttribute('aria-expanded', String(open));
 }
 burger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+// Cerrar el menú y DESPUÉS desplazar: con el menú abierto body{overflow:hidden}
+// se comía el scroll del anclaje y la página se quedaba en el hero
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', e => {
+  const id = a.getAttribute('href');
+  setMenu(false);
+  if(id && id.startsWith('#')){
+    const target = document.querySelector(id);
+    if(target){
+      e.preventDefault();
+      requestAnimationFrame(() => {
+        target.scrollIntoView({behavior:'smooth'});
+        history.replaceState(null, '', id);
+      });
+    }
+  }
+}));
 document.addEventListener('keydown', e => {
   if(e.key === 'Escape' && navLinks.classList.contains('open')){ setMenu(false); burger.focus(); }
 });
 
 // ---------- Scroll reveals ----------
+const reveals = [...document.querySelectorAll('.reveal')];
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 },{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+reveals.forEach(el => io.observe(el));
+// Red de seguridad: si el observer no llega a disparar (pestaña en segundo
+// plano, saltos de anclaje…), destapa lo que ya esté dentro del viewport
+function sweepReveals(){
+  reveals.forEach(el => {
+    if(el.classList.contains('in')) return;
+    const r = el.getBoundingClientRect();
+    if(r.top < innerHeight * .92 && r.bottom > 0){ el.classList.add('in'); io.unobserve(el); }
+  });
+}
+window.addEventListener('scroll', sweepReveals, {passive:true});
+window.addEventListener('resize', sweepReveals, {passive:true});
+window.addEventListener('pageshow', sweepReveals);
+window.addEventListener('load', sweepReveals);
 </script>
 </body>
 </html>
