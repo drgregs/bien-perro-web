@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bien Perro — Taquería · Cocina Mexicana · Madrid</title>
-<meta name="description" content="Bien Perro Taquería en Calle Toledo 70, Madrid. Tacos al pastor del trompo, margaritas a 4€ por apertura y cero reservas. Apertura 14-17 de agosto en las Fiestas de La Paloma.">
+<meta name="description" content="Bien Perro Taquería en Calle Toledo 70, Madrid (La Latina). Tacos, quesadillas, costras y tamales, con la margarita más canalla de Madrid a 4€. Cocina mexicana de verdad y sin reservas.">
 <meta name="theme-color" content="#F2701D">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F2701D'/%3E%3Cpath fill='%23171009' d='M20 8 L27 20 L36 18 L43 6 L45 22 C51 26 55 33 55 40 C55 45 53 49 49 52 L45 57 L39 53 C36 54 34 55 31.5 55 C29 55 26 54 23 53 L17 57 L13 51 C10 48 9 44 9 40 C9 33 13 26 19 22 Z'/%3E%3Ccircle cx='26' cy='36' r='2.8' fill='%23F2701D'/%3E%3Ccircle cx='39' cy='36' r='2.8' fill='%23F2701D'/%3E%3Cpath fill='%23F2701D' d='M29.5 45 L35.5 45 L32.5 48.5 Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,31 +127,6 @@ nav.scrolled .burger span{background:var(--crema)}
   opacity:0;animation:rise .9s .3s ease forwards;
 }
 .hero-logo img{width:100%;height:100%;object-fit:cover;object-position:50% 54%;display:block}
-/* Anuncio flotante de La Paloma / apertura con cuenta atrás */
-.hero-promo{
-  position:absolute;top:120px;right:5vw;z-index:5;text-decoration:none;
-  opacity:0;animation:rise .8s 1.5s ease forwards;
-}
-.hp-inner{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  background:var(--negro);color:var(--crema);
-  padding:20px 26px;border-radius:18px;border:2px dashed rgba(246,236,220,.5);
-  transform:rotate(7deg);text-align:center;
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.hero-promo:hover .hp-inner{transform:rotate(3deg) scale(1.05);box-shadow:0 14px 30px rgba(0,0,0,.3)}
-.hp-top{font-weight:900;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--lima)}
-.hp-date{font-family:var(--display);font-size:1.9rem;line-height:1.1;color:var(--crema)}
-.hp-sub{font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(246,236,220,.8)}
-.hp-count{
-  margin-top:8px;font-weight:900;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
-  background:var(--rojo);color:#fff;border-radius:999px;padding:6px 14px;
-  animation:pulse 2s ease-in-out infinite;
-}
-@media(max-width:1200px){
-  .hero-promo{position:static;margin-top:30px}
-  .hp-inner{transform:rotate(-2deg)}
-}
 .hero-sub{
   max-width:560px;font-size:clamp(1rem,2.3vw,1.25rem);font-weight:500;line-height:1.5;
   opacity:0;animation:rise .8s 1s ease forwards;
@@ -181,9 +156,6 @@ nav.scrolled .burger span{background:var(--crema)}
   content:'';display:block;width:2px;height:34px;background:var(--negro);
   margin-top:8px;animation:drip 1.6s ease-in-out infinite;transform-origin:top;
 }
-/* con el anuncio en flujo (≤1200px) el hero crece más que el viewport y la
-   flecha absoluta de scroll se montaría encima → fuera */
-@media(max-width:1200px){.hero-scroll{display:none}}
 @keyframes rise{to{opacity:1;transform:translateY(0)}}
 @keyframes drip{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
 
@@ -299,6 +271,7 @@ h2{
   font-family:var(--body);font-style:normal;
 }
 .menu-block li .precio-mini{font-family:var(--display);color:var(--lima);float:right}
+.menu-block .menu-desc{margin-top:14px;font-style:italic;font-size:.85rem;color:rgba(246,236,220,.6);line-height:1.5}
 .trompo-note{
   margin-top:40px;display:flex;align-items:center;gap:16px;
   font-weight:700;color:var(--naranja);font-size:1rem;
@@ -309,63 +282,6 @@ h2{
 @media(max-width:640px){.menu-grid{grid-template-columns:1fr}}
 @media(max-width:760px){
   .plato.destacado{grid-template-columns:1fr}
-}
-
-/* ---------- La Paloma · Próxima apertura ---------- */
-.paloma{background:var(--naranja);color:var(--negro)}
-.paloma .eyebrow{color:var(--negro)}
-.paloma-head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
-.paloma-head p.lead{font-size:1.08rem;font-weight:500;line-height:1.65;max-width:56ch}
-.paloma-sticker{width:clamp(140px,17vw,200px);flex:none}
-.paloma-sticker img{
-  width:100%;display:block;border-radius:50%;
-  box-shadow:0 16px 38px rgba(0,0,0,.3);
-  animation:spin 40s linear infinite;
-}
-.paloma-fecha{
-  display:inline-block;font-family:var(--display);
-  font-size:clamp(1.15rem,3vw,1.7rem);line-height:1.3;
-  background:var(--negro);color:var(--crema);border-radius:16px;
-  padding:16px 26px;margin:6px 0 18px;transform:rotate(-1deg);
-}
-.paloma-fecha .dir{color:var(--lima)}
-.paloma-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
-.ppanel{
-  background:var(--crema);border:3px solid var(--negro);border-radius:18px;
-  padding:30px 26px;box-shadow:8px 8px 0 var(--negro);
-  transition:transform .25s ease;
-}
-.ppanel:hover{transform:translateY(-6px)}
-.ppanel h3{font-family:var(--display);font-size:1.3rem;margin-bottom:16px}
-.ppanel ul{list-style:none}
-.prow{
-  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  padding:9px 0;border-bottom:2px dashed rgba(23,16,9,.2);
-  font-weight:700;font-size:.92rem;
-}
-.prow:last-child{border-bottom:none}
-.prow b{font-family:var(--display);font-weight:400;white-space:nowrap;color:var(--naranja-osc)}
-.ppanel .pnote{margin-top:14px;font-size:.82rem;font-weight:700;color:var(--nopal);line-height:1.5}
-.ppanel h4{
-  font-family:var(--body);font-weight:900;font-size:.75rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--naranja-osc);margin:18px 0 8px;
-}
-.ppanel h4:first-of-type{margin-top:0}
-.ppanel p.sabores{font-weight:700;font-size:.95rem;line-height:1.7}
-.paloma-callout{
-  margin-top:44px;text-align:center;font-family:var(--display);
-  font-size:clamp(1.15rem,3.2vw,1.7rem);line-height:1.4;
-}
-.paloma-callout span.sub{
-  display:block;font-family:var(--body);font-weight:700;font-size:.9rem;
-  letter-spacing:.08em;margin-top:8px;text-transform:uppercase;
-}
-@media(max-width:1000px){.paloma-grid{grid-template-columns:1fr}}
-@media(max-width:760px){
-  .paloma-head{grid-template-columns:1fr;justify-items:center;text-align:center;gap:26px}
-  .paloma-head .eyebrow{justify-content:center}
-  /* centrado y a dos líneas, la rayita quedaba colgando a la izquierda */
-  .paloma-head .eyebrow::before{display:none}
 }
 
 /* ---------- Neón ---------- */
@@ -522,12 +438,6 @@ footer{background:var(--negro);padding:100px 24px 40px}
   .hero-sub{font-size:.98rem;max-width:32ch}
   .hero-badges{gap:8px;margin-top:22px}
   .badge{font-size:.72rem;padding:9px 16px}
-  /* tarjeta de apertura: entera, centrada y sin cortes */
-  .hero-promo{margin-top:24px;width:min(330px,92vw)}
-  .hp-inner{padding:16px 22px;border-radius:16px}
-  .hp-date{font-size:1.55rem}
-  .hp-top{font-size:.6rem;letter-spacing:.22em}
-  .hp-sub{font-size:.66rem}
   .ticker span{font-size:.9rem;padding:0 18px}
   h2{font-size:clamp(1.7rem,7.5vw,2.4rem)}
   .plato{padding:26px 22px}
@@ -551,7 +461,7 @@ footer{background:var(--negro);padding:100px 24px 40px}
   *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
   .ticker-track{animation:none}
   .reveal{opacity:1;transform:none}
-  .hero-eyebrow,.hero-sub,.hero-badges,.hero-scroll,.hero-logo,.hero-promo{opacity:1;transform:none;animation:none}
+  .hero-eyebrow,.hero-sub,.hero-badges,.hero-scroll,.hero-logo{opacity:1;transform:none;animation:none}
 }
 a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--lima);outline-offset:3px;border-radius:4px}
 </style>
@@ -564,7 +474,6 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <img src="assets/logo-marca.png" alt="Bien Perro">
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#paloma">La Paloma</a></li>
     <li><a href="#historia"><span class="es">Historia</span><span class="en">Story</span><span class="fr">Histoire</span><span class="de">Geschichte</span></a></li>
     <li><a href="#carta"><span class="es">La Carta</span><span class="en">Menu</span><span class="fr">La Carte</span><span class="de">Speisekarte</span></a></li>
     <li><a href="#reservas"><span class="es">Sin Reservas</span><span class="en">No Bookings</span><span class="fr">Sans résa</span><span class="de">Keine Resa</span></a></li>
@@ -592,26 +501,17 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </h1>
 
   <p class="hero-sub">
-    <span class="es">Tacos al pastor recién bajados del trompo, margaritas a 4€ por apertura y cero reservas. Llega, come, bebe, repite.</span>
-    <span class="en">Tacos al pastor straight off the trompo, €4 margaritas for our opening and zero reservations. Show up, eat, drink, repeat.</span>
-    <span class="fr">Tacos al pastor tout juste sortis du trompo, margaritas à 4€ pour l'ouverture et zéro réservation. Viens, mange, bois, recommence.</span>
-    <span class="de">Tacos al Pastor frisch vom Trompo, Margaritas für 4€ zur Eröffnung und keine Reservierungen. Kommen, essen, trinken, wiederholen.</span>
+    <span class="es">Tacos al pastor recién bajados del trompo, margaritas a 4€ y cero reservas. Llega, come, bebe, repite.</span>
+    <span class="en">Tacos al pastor straight off the trompo, €4 margaritas and zero reservations. Show up, eat, drink, repeat.</span>
+    <span class="fr">Tacos al pastor tout juste sortis du trompo, margaritas à 4€ et zéro réservation. Viens, mange, bois, recommence.</span>
+    <span class="de">Tacos al Pastor frisch vom Trompo, Margaritas für 4€ und keine Reservierungen. Kommen, essen, trinken, wiederholen.</span>
   </p>
 
   <div class="hero-badges">
     <span class="badge solid"><span class="es">Sin reservas</span><span class="en">No bookings</span><span class="fr">Sans réservation</span><span class="de">Keine Reservierung</span></span>
-    <span class="badge lima"><span class="es">Margaritas 4€ · por apertura</span><span class="en">€4 Margaritas · opening deal</span><span class="fr">Margaritas 4€ · offre d'ouverture</span><span class="de">Margaritas 4€ · zur Eröffnung</span></span>
+    <span class="badge lima"><span class="es">Margaritas 4€</span><span class="en">€4 Margaritas</span><span class="fr">Margaritas 4€</span><span class="de">Margaritas 4€</span></span>
     <span class="badge"><span class="es">Calle Toledo 70</span><span class="en">Calle Toledo 70</span><span class="fr">Calle Toledo 70</span><span class="de">Calle Toledo 70</span></span>
   </div>
-
-  <a class="hero-promo" href="#paloma">
-    <span class="hp-inner">
-      <span class="hp-top"><span class="es">Próxima apertura</span><span class="en">Grand opening</span><span class="fr">Ouverture</span><span class="de">Eröffnung</span></span>
-      <span class="hp-date"><span class="es">14–17 AGO</span><span class="en">AUG 14–17</span><span class="fr">14–17 AOÛT</span><span class="de">14.–17. AUG</span></span>
-      <span class="hp-sub"><span class="es">Fiestas de La Paloma · C. Toledo 70</span><span class="en">La Paloma Festival · C. Toledo 70</span><span class="fr">Fêtes de La Paloma · C. Toledo 70</span><span class="de">La-Paloma-Fest · C. Toledo 70</span></span>
-      <span class="hp-count" id="hpCount"></span>
-    </span>
-  </a>
 
   <span class="hero-scroll"><span class="es">Baja</span><span class="en">Scroll</span><span class="fr">Descends</span><span class="de">Scroll</span></span>
 </header>
@@ -620,75 +520,6 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track" id="tickerTrack"></div>
 </div>
-
-<!-- ================= LA PALOMA · PRÓXIMA APERTURA ================= -->
-<section class="paloma" id="paloma">
-  <div class="wrap">
-    <div class="paloma-head reveal">
-      <div>
-        <p class="eyebrow"><span class="es">Fiestas de La Paloma · Próxima apertura</span><span class="en">La Paloma Festival · Grand opening</span><span class="fr">Fêtes de La Paloma · Ouverture</span><span class="de">La-Paloma-Fest · Eröffnung</span></p>
-        <h2><span class="es">Abrimos en plenas fiestas</span><span class="en">We open mid-festival</span><span class="fr">On ouvre en pleines fêtes</span><span class="de">Wir eröffnen mitten im Fest</span></h2>
-        <p class="paloma-fecha">14 – 17 <span class="es">de agosto</span><span class="en">August</span><span class="fr">août</span><span class="de">August</span> · <span class="dir">Calle Toledo 70</span></p>
-        <p class="lead">
-          <span class="es">Promoción especial de las Fiestas de La Paloma y de nuestra apertura: precios bien perros para celebrar por todo lo alto en La Latina.</span>
-          <span class="en">Special promo for the La Paloma festival and our opening: seriously good prices to celebrate big in La Latina.</span>
-          <span class="fr">Promotion spéciale pour les Fêtes de La Paloma et notre ouverture : des prix bien perros pour fêter ça en grand à La Latina.</span>
-          <span class="de">Sonderaktion zum La-Paloma-Fest und zu unserer Eröffnung: richtig gute Preise, um in La Latina groß zu feiern.</span>
-        </p>
-      </div>
-      <div class="paloma-sticker">
-        <img src="assets/pegatina.png" alt="Pegatina Bien Perro Taquería — Calle Toledo 70, Madrid" loading="lazy" decoding="async">
-      </div>
-    </div>
-
-    <div class="paloma-grid">
-      <div class="ppanel reveal">
-        <h3><span class="es">Bebidas</span><span class="en">Drinks</span><span class="fr">Boissons</span><span class="de">Getränke</span></h3>
-        <ul>
-          <li class="prow"><span class="es">Refresco de bote · agua</span><span class="en">Canned soft drink · water</span><span class="fr">Soda en canette · eau</span><span class="de">Dosengetränk · Wasser</span> <b>2,50€</b></li>
-          <li class="prow"><span>Mini de cerveza</span> <b>2 × 10€</b></li>
-          <li class="prow"><span>Mini de tinto</span> <b>7€</b></li>
-          <li class="prow"><span>Mini de margarita</span> <b>10€</b></li>
-          <li class="prow"><span>Mini de alcohol</span> <b>10€</b></li>
-          <li class="prow"><span>Doble de cerveza</span> <b>2 × 5€</b></li>
-          <li class="prow"><span>Doble de tinto</span> <b>2 × 5€</b></li>
-          <li class="prow"><span>Doble de margarita</span> <b>4€</b></li>
-          <li class="prow"><span>Doble de alcohol</span> <b>5€</b></li>
-        </ul>
-        <p class="pnote"><span class="es">Refresco y agua siempre con vaso con hielo.</span><span class="en">Soft drinks and water always served with a cup and ice.</span><span class="fr">Soda et eau toujours servis avec gobelet et glaçons.</span><span class="de">Softdrinks und Wasser immer mit Becher und Eis.</span></p>
-      </div>
-
-      <div class="ppanel reveal">
-        <h3><span class="es">Ofertas · Packs</span><span class="en">Deals · Packs</span><span class="fr">Offres · Packs</span><span class="de">Angebote · Packs</span></h3>
-        <ul>
-          <li class="prow"><span class="es">3 tacos + 1 doble</span><span class="en">3 tacos + 1 doble</span><span class="fr">3 tacos + 1 doble</span><span class="de">3 Tacos + 1 Doble</span> <b>5€</b></li>
-          <li class="prow"><span class="es">4 tacos</span><span class="en">4 tacos</span><span class="fr">4 tacos</span><span class="de">4 Tacos</span> <b>5€</b></li>
-          <li class="prow"><span class="es">Quesadilla XL (20 cm)</span><span class="en">XL quesadilla (20 cm)</span><span class="fr">Quesadilla XL (20 cm)</span><span class="de">XL-Quesadilla (20 cm)</span> <b>5€</b></li>
-          <li class="prow"><span class="es">Tamal Bien Perro con salsas</span><span class="en">Bien Perro tamal with salsas</span><span class="fr">Tamal Bien Perro avec sauces</span><span class="de">Tamal Bien Perro mit Salsas</span> <b>6€</b></li>
-        </ul>
-      </div>
-
-      <div class="ppanel reveal">
-        <h3><span class="es">Sabores en La Paloma</span><span class="en">Flavours at La Paloma</span><span class="fr">Saveurs à La Paloma</span><span class="de">Sorten bei La Paloma</span></h3>
-        <h4>Tacos</h4>
-        <p class="sabores">Pastor · Suadero · Tinga · Champiñones con queso y pimientos</p>
-        <h4>Quesadillas</h4>
-        <p class="sabores">Suadero · Tinga · Gringa · Champiñones con queso y pimientos</p>
-        <h4>Tamales</h4>
-        <p class="sabores">Cerdo en salsa roja · Pollo en salsa verde · Frijoles con queso · Queso</p>
-        <p class="pnote"><span class="es">Doble de margarita a 4€: precio de apertura. Que se sepa.</span><span class="en">€4 margarita doble: opening price. Now you know.</span><span class="fr">Doble de margarita à 4€ : prix d'ouverture. Que ça se sache.</span><span class="de">Margarita-Doble für 4€: Eröffnungspreis. Sag's weiter.</span></p>
-      </div>
-    </div>
-
-    <p class="paloma-callout reveal">
-      <span class="es">Margaritas a 4€ porque estamos aperturando. 🍹</span>
-      <span class="en">€4 margaritas because we're just opening. 🍹</span>
-      <span class="fr">Margaritas à 4€ parce qu'on vient d'ouvrir. 🍹</span>
-      <span class="de">Margaritas für 4€, weil wir gerade eröffnen. 🍹</span>
-      <span class="sub"><span class="es">14–17 de agosto · Calle Toledo 70 · La Latina, Madrid</span><span class="en">August 14–17 · Calle Toledo 70 · La Latina, Madrid</span><span class="fr">14–17 août · Calle Toledo 70 · La Latina, Madrid</span><span class="de">14.–17. August · Calle Toledo 70 · La Latina, Madrid</span></span>
-    </p>
-  </div>
-</section>
 
 <!-- ================= NEÓN ================= -->
 <section class="neon-sec" aria-label="Más perros que tu ex...">
@@ -747,9 +578,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <div class="carta-grid">
       <article class="plato destacado reveal">
         <div>
-          <span class="tag"><span class="es">Por apertura</span><span class="en">Opening deal</span><span class="fr">Offre d'ouverture</span><span class="de">Zur Eröffnung</span></span>
+          <span class="tag"><span class="es">La estrella</span><span class="en">The star</span><span class="fr">La star</span><span class="de">Der Star</span></span>
           <h3>Margarita</h3>
-          <p><span class="es">Clásica, con escarcha de sal. A 4€ porque estamos de apertura: que la gente lo sepa y que corra la voz.</span><span class="en">Classic, salt-rimmed. €4 because we're celebrating our opening — spread the word.</span><span class="fr">Classique, givrée au sel. À 4€ parce que c'est notre ouverture : fais passer le mot.</span><span class="de">Klassisch, mit Salzrand. Für 4€, weil wir gerade eröffnen — sag es weiter.</span></p>
+          <p><span class="es">Clásica, con escarcha de sal y hecha como debe ser. A 4€, la más canalla de Madrid. Que corra la voz.</span><span class="en">Classic, salt-rimmed and made properly. €4, the boldest in Madrid. Spread the word.</span><span class="fr">Classique, givrée au sel et faite comme il faut. À 4€, la plus canaille de Madrid. Fais passer le mot.</span><span class="de">Klassisch, mit Salzrand und richtig gemacht. Für 4€, die frechste Madrids. Sag es weiter.</span></p>
         </div>
         <span class="precio">4€</span>
       </article>
@@ -757,85 +588,117 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 
     <div class="menu-grid">
       <div class="menu-block reveal">
-        <h3>Tacos Bien Perro</h3>
+        <h3>Tacos</h3>
         <ul>
-          <li>Taco de suadero</li>
-          <li>Taco de arrachera</li>
-          <li>Taco de pastor</li>
-          <li>Taco de carnitas</li>
-          <li>Taco de cochinita pibil</li>
-          <li>Taco de champiñones con pimientos y queso</li>
-          <li>Taco de tinga de pollo</li>
-          <li>Taco de cochinada</li>
-          <li>Taco de nopales con queso</li>
-          <li>Taco de alambre de pollo</li>
-        </ul>
-      </div>
-
-      <div class="menu-block reveal">
-        <h3><span class="es">Tacos Especiales</span><span class="en">Special Tacos</span><span class="fr">Tacos Spéciaux</span><span class="de">Spezial-Tacos</span></h3>
-        <ul>
-          <li>Taco de Wagyu <span class="mini-tag"><span class="es">Próximamente</span><span class="en">Coming soon</span><span class="fr">Bientôt</span><span class="de">Bald</span></span>
-            <em><span class="es">«Lo estamos preparando. La carne más top del planeta, en el formato más honesto de Madrid.»</span><span class="en">"It's in the works. The finest beef on the planet, in Madrid's most honest format."</span><span class="fr">« On le prépare. La viande la plus top de la planète, dans le format le plus honnête de Madrid. »</span><span class="de">„Wir arbeiten daran. Das beste Fleisch der Welt, im ehrlichsten Format Madrids."</span></em>
-          </li>
-          <li>Taco de oreja a la plancha</li>
-        </ul>
-        <h3 style="margin-top:26px"><span class="es">Tamales</span><span class="en">Tamales</span><span class="fr">Tamales</span><span class="de">Tamales</span></h3>
-        <ul>
-          <li>Tamal de cerdo en salsa roja</li>
-          <li>Tamal de pollo en salsa verde</li>
-          <li>Tamal de frijoles con queso</li>
-          <li>Tamal de queso</li>
+          <li>Taco de suadero <span class="precio-mini">1€</span></li>
+          <li>Taco de pastor <span class="precio-mini">1€</span></li>
+          <li>Taco de tinga de pollo <span class="precio-mini">1€</span></li>
+          <li>Taco de cochinita pibil <span class="precio-mini">1€</span></li>
+          <li>Taco de champiñón <span class="precio-mini">1€</span></li>
+          <li>Taco de arrachera <span class="precio-mini">1,50€</span></li>
         </ul>
       </div>
 
       <div class="menu-block reveal">
         <h3>Quesadillas</h3>
         <ul>
-          <li>Quesadilla de tinga</li>
-          <li>Quesadilla de cochinita</li>
-          <li>Quesadilla de suadero</li>
-          <li>Quesadilla de pastor</li>
-          <li>Quesadilla de gringa</li>
-          <li>Quesadilla de arrachera</li>
-          <li>Quesadilla de champiñones con pimientos y queso</li>
-          <li>Quesadilla solo queso</li>
-          <li>Quesadilla vegana</li>
+          <li>Quesadilla gringa (pastor) <span class="precio-mini">4,50€</span></li>
+          <li>Quesadilla de tinga <span class="precio-mini">4,50€</span></li>
+          <li>Quesadilla de cochinita pibil <span class="precio-mini">4,50€</span></li>
+          <li>Quesadilla de suadero <span class="precio-mini">4,50€</span></li>
+          <li>Quesadilla de arrachera <span class="precio-mini">4,50€</span></li>
+          <li>Quesadilla de champiñón <span class="precio-mini">4,50€</span></li>
+          <li>Quesadilla solo queso <span class="precio-mini">4€</span></li>
         </ul>
       </div>
 
       <div class="menu-block reveal">
-        <h3><span class="es">Entrantes · Costras</span><span class="en">Starters · Costras</span><span class="fr">Entrées · Costras</span><span class="de">Vorspeisen · Costras</span></h3>
+        <h3>Costras</h3>
         <ul>
-          <li>Costra de suadero</li>
-          <li>Costra de pastor</li>
-          <li>Costra de tinga</li>
-          <li>Costra de carnitas</li>
-          <li>Costra de cochinita</li>
-          <li>Costra vegana</li>
+          <li>Costra de suadero <span class="precio-mini">5,50€</span></li>
+          <li>Costra de pastor <span class="precio-mini">5,50€</span></li>
+          <li>Costra de tinga <span class="precio-mini">5,50€</span></li>
+          <li>Costra de cochinita pibil <span class="precio-mini">5,50€</span></li>
+          <li>Costra de champiñón <span class="precio-mini">5,50€</span></li>
         </ul>
+        <p class="menu-desc"><span class="es">Costra de queso con tu relleno, verduras y salsas.</span><span class="en">Cheese shell with your filling, vegetables and sauces.</span><span class="fr">Croûte de fromage avec ta garniture, légumes et sauces.</span><span class="de">Käsekruste mit deiner Füllung, Gemüse und Salsas.</span></p>
       </div>
 
       <div class="menu-block reveal">
-        <h3><span class="es">Entrantes · Guacamoles y Flautas</span><span class="en">Starters · Guacamoles & Flautas</span><span class="fr">Entrées · Guacamoles et Flautas</span><span class="de">Vorspeisen · Guacamoles & Flautas</span></h3>
+        <h3>Nachos</h3>
         <ul>
-          <li>Guacamole con chicharrón</li>
-          <li>Guacamole con totopos</li>
-          <li>Flauta de tinga de pollo</li>
-          <li>Flauta de cochinita pibil</li>
-        </ul>
-      </div>
-
-      <div class="menu-block reveal">
-        <h3><span class="es">La Barra</span><span class="en">The Bar</span><span class="fr">Le Bar</span><span class="de">Die Bar</span></h3>
-        <ul>
-          <li>Margarita clásica <span class="precio-mini">4€</span>
-            <em><span class="es">Precio de apertura. Aprovéchalo.</span><span class="en">Opening price. Make the most of it.</span><span class="fr">Prix d'ouverture. Profites-en.</span><span class="de">Eröffnungspreis. Nutz die Chance.</span></em>
+          <li>Nachos con guacamole <span class="precio-mini">6,50€</span></li>
+          <li>Nachos Bien Perro <span class="precio-mini">7,50€</span>
+            <em><span class="es">Carne picada, queso fundido, pico de gallo, crema agria y un toque de guacamole.</span><span class="en">Minced meat, melted cheese, pico de gallo, sour cream and a touch of guacamole.</span><span class="fr">Viande hachée, fromage fondu, pico de gallo, crème aigre et une touche de guacamole.</span><span class="de">Hackfleisch, geschmolzener Käse, Pico de Gallo, Sauerrahm und ein Hauch Guacamole.</span></em>
           </li>
-          <li>Sotol · Tequila · Mezcal</li>
-          <li><span class="es">Cerveza (doble y mini)</span><span class="en">Beer (doble & mini)</span><span class="fr">Bière (doble et mini)</span><span class="de">Bier (Doble & Mini)</span></li>
-          <li><span class="es">Tinto</span><span class="en">Red wine</span><span class="fr">Vin rouge</span><span class="de">Rotwein</span></li>
-          <li><span class="es">Refrescos de bote y agua</span><span class="en">Canned soft drinks & water</span><span class="fr">Sodas en canette et eau</span><span class="de">Dosengetränke & Wasser</span></li>
+        </ul>
+        <h3 style="margin-top:26px">Tamales <span style="font-family:var(--body);font-weight:900;font-size:.7rem;letter-spacing:.1em;color:rgba(246,236,220,.5)">· 6,50€</span></h3>
+        <ul>
+          <li>Tamal de cerdo en salsa roja</li>
+          <li>Tamal de pollo en salsa verde</li>
+          <li>Tamal de frijoles picositos con queso</li>
+          <li>Tamal de rajas con queso</li>
+        </ul>
+      </div>
+
+      <div class="menu-block reveal">
+        <h3>Extras</h3>
+        <ul>
+          <li><span class="es">Extra de verdura</span><span class="en">Extra vegetables</span><span class="fr">Extra de légumes</span><span class="de">Extra Gemüse</span> <span class="precio-mini">0,50€</span></li>
+          <li><span class="es">Extra de salsa</span><span class="en">Extra sauce</span><span class="fr">Extra de sauce</span><span class="de">Extra Salsa</span> <span class="precio-mini">1€</span></li>
+          <li><span class="es">Para llevar</span><span class="en">Take away</span><span class="fr">À emporter</span><span class="de">Zum Mitnehmen</span> <span class="precio-mini">+0,30€</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-block reveal">
+        <h3><span class="es">Aguas frescas y refrescos</span><span class="en">Aguas frescas &amp; soft drinks</span><span class="fr">Aguas frescas &amp; sodas</span><span class="de">Aguas frescas &amp; Softdrinks</span></h3>
+        <ul>
+          <li>Agua de jamaica <span class="precio-mini">2,50€</span></li>
+          <li>Agua de tamarindo <span class="precio-mini">2,50€</span></li>
+          <li>Horchata <span class="precio-mini">2,50€</span></li>
+          <li>Jarritos <span class="precio-mini">2,50€</span>
+            <em>Mango · Mandarina · Lima · Guayaba</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-block reveal">
+        <h3><span class="es">Cervezas y michelada</span><span class="en">Beers &amp; michelada</span><span class="fr">Bières &amp; michelada</span><span class="de">Biere &amp; Michelada</span></h3>
+        <ul>
+          <li>Mahou <span class="precio-mini">3€</span></li>
+          <li><span class="es">Mahou sin gluten</span><span class="en">Mahou gluten-free</span><span class="fr">Mahou sans gluten</span><span class="de">Mahou glutenfrei</span> <span class="precio-mini">3€</span></li>
+          <li>Mahou 0,0 tostada <span class="precio-mini">3€</span></li>
+          <li><span class="es">Doble de Mahou</span><span class="en">Mahou doble</span><span class="fr">Mahou doble</span><span class="de">Mahou Doble</span> <span class="precio-mini">2,50€</span></li>
+          <li><span class="es">Jarra de cerveza</span><span class="en">Beer pitcher</span><span class="fr">Pichet de bière</span><span class="de">Bierkrug</span> <span class="precio-mini">4€</span></li>
+          <li>Pacífico · Modelo · Corona <span class="precio-mini">3,50€</span></li>
+          <li>Michelada <span class="precio-mini">1,50€</span>
+            <em><span class="es">+ cerveza a elección · con limón, salsas y borde de sal y chile.</span><span class="en">+ chosen beer · with lime, sauces and a salt-and-chili rim.</span><span class="fr">+ bière au choix · avec citron vert, sauces et bord sel-piment.</span><span class="de">+ Bier nach Wahl · mit Limette, Salsas und Salz-Chili-Rand.</span></em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-block reveal">
+        <h3><span class="es">Vinos y cócteles</span><span class="en">Wine &amp; cocktails</span><span class="fr">Vins &amp; cocktails</span><span class="de">Weine &amp; Cocktails</span></h3>
+        <ul>
+          <li>Margarita <span class="precio-mini">4€</span>
+            <em>Limón · Fresa · Maracuyá · Mango</em>
+          </li>
+          <li><span class="es">Tinto de verano</span><span class="en">Tinto de verano</span><span class="fr">Tinto de verano</span><span class="de">Tinto de Verano</span> <span class="precio-mini">4€</span></li>
+          <li><span class="es">Vino tinto</span><span class="en">Red wine</span><span class="fr">Vin rouge</span><span class="de">Rotwein</span> <span class="precio-mini">2,50€</span></li>
+          <li><span class="es">Vino blanco</span><span class="en">White wine</span><span class="fr">Vin blanc</span><span class="de">Weißwein</span> <span class="precio-mini">2,50€</span></li>
+          <li><span class="es">Combinados</span><span class="en">Mixed drinks</span><span class="fr">Cocktails alcoolisés</span><span class="de">Longdrinks</span> <span class="precio-mini">5€</span>
+            <em>Ron · Ginebra · Whisky · Vodka</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-block reveal">
+        <h3>Shots</h3>
+        <ul>
+          <li>Tequila <span class="precio-mini">2€</span></li>
+          <li>Tequifresi <span class="precio-mini">2€</span></li>
+          <li>Mezcal <span class="precio-mini">4€</span></li>
+          <li>Sotol <span class="precio-mini">10€</span></li>
         </ul>
       </div>
     </div>
@@ -986,10 +849,10 @@ function buildTicker(items){
 // ---------- Idiomas: ES · EN · FR · DE ----------
 const LANGS = ['es','en','fr','de'];
 const TICKER = {
-  es: ['TACOS AL PASTOR','MARGARITAS 4€','SIN RESERVAS','ORDEN DE LLEGADA','WAGYU EN CAMINO','SOTOL · TEQUILA · MEZCAL'],
-  en: ['TACOS AL PASTOR','€4 MARGARITAS','NO BOOKINGS','FIRST COME FIRST SERVED','WAGYU COMING SOON','SOTOL · TEQUILA · MEZCAL'],
-  fr: ['TACOS AL PASTOR','MARGARITAS 4€','SANS RÉSERVATION','PREMIER ARRIVÉ, PREMIER SERVI','WAGYU BIENTÔT','SOTOL · TEQUILA · MEZCAL'],
-  de: ['TACOS AL PASTOR','MARGARITAS 4€','KEINE RESERVIERUNG','WER ZUERST KOMMT','WAGYU KOMMT BALD','SOTOL · TEQUILA · MEZCAL']
+  es: ['TACOS AL PASTOR','MARGARITAS 4€','SIN RESERVAS','ORDEN DE LLEGADA','COSTRAS Y TAMALES','SOTOL · TEQUILA · MEZCAL'],
+  en: ['TACOS AL PASTOR','€4 MARGARITAS','NO BOOKINGS','FIRST COME FIRST SERVED','COSTRAS & TAMALES','SOTOL · TEQUILA · MEZCAL'],
+  fr: ['TACOS AL PASTOR','MARGARITAS 4€','SANS RÉSERVATION','PREMIER ARRIVÉ, PREMIER SERVI','COSTRAS & TAMALES','SOTOL · TEQUILA · MEZCAL'],
+  de: ['TACOS AL PASTOR','MARGARITAS 4€','KEINE RESERVIERUNG','WER ZUERST KOMMT','COSTRAS & TAMALES','SOTOL · TEQUILA · MEZCAL']
 };
 const langSel = document.getElementById('langSel');
 function setLang(l){
@@ -997,32 +860,9 @@ function setLang(l){
   document.documentElement.lang = l;
   langSel.value = l;
   buildTicker(TICKER[l]);
-  updateCountdown(l);
   try{ localStorage.setItem('bp-lang', l); }catch(e){}
 }
 
-// ---------- Cuenta atrás para la apertura (14–17 agosto) ----------
-const hpCount = document.getElementById('hpCount');
-const COUNT_TXT = {
-  es: d => `Faltan ${d} día${d === 1 ? '' : 's'}`,
-  en: d => `${d} day${d === 1 ? '' : 's'} to go`,
-  fr: d => `J-${d}`,
-  de: d => `Noch ${d} Tag${d === 1 ? '' : 'e'}`
-};
-const OPEN_TXT = {es:'¡Ya estamos abiertos!', en:"We're open!", fr:"C'est maintenant !", de:'Jetzt geöffnet!'};
-const AFTER_TXT = {es:'Ya abrimos · C. Toledo 70', en:'Now open · C. Toledo 70', fr:'Ouvert · C. Toledo 70', de:'Geöffnet · C. Toledo 70'};
-function updateCountdown(l){
-  const now = new Date();
-  const start = new Date(2026, 7, 14);
-  const end = new Date(2026, 7, 17, 23, 59, 59);
-  if(now < start){
-    hpCount.textContent = COUNT_TXT[l](Math.ceil((start - now) / 86400000));
-  } else if(now <= end){
-    hpCount.textContent = OPEN_TXT[l];
-  } else {
-    hpCount.textContent = AFTER_TXT[l];
-  }
-}
 langSel.addEventListener('change', () => setLang(langSel.value));
 let saved = 'es';
 try{ saved = localStorage.getItem('bp-lang') || 'es'; }catch(e){}
